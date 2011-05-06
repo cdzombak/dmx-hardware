@@ -72,11 +72,11 @@ always @(posedge PCLK, negedge PRESERN) begin
 								// writing address. save address for future use, and we're ready to go.
 								addr <= PWDATA[13:0];
 								state <= IDLE;
-                                PRDATA <= 32'b0;
-                                CSR_DW <= 32'b0;
-                                CSR_A <= 32'b0;
+								PRDATA <= 32'b0;
+								CSR_DW <= 32'b0;
+								CSR_A <= 32'b0;
 								PREADY <= 1'b1;
-	                        	CSR_WE <= 1'b0;
+								CSR_WE <= 1'b0;
 							end
 						1'b1: begin
 								// writing data, so kick off write to CSR.
@@ -85,8 +85,8 @@ always @(posedge PCLK, negedge PRESERN) begin
 								CSR_WE <= 1'b1;
 								state <= WRITE;
 								PREADY <= 1'b0;
-                                PRDATA <= 32'b0;
-                                addr <= addr;
+								PRDATA <= 32'b0;
+								addr <= addr;
 							end
 					endcase
 				end else if (rd_enable) begin
@@ -95,74 +95,74 @@ always @(posedge PCLK, negedge PRESERN) begin
 								// reading address register
 								PRDATA[31:14] <= 18'b0;
 								PRDATA[13:0]  <= addr;
-                                CSR_DW <= 32'b0;
-                                CSR_A <= 32'b0;
+								CSR_DW <= 32'b0;
+								CSR_A <= 32'b0;
 								PREADY <= 1'b1;
-	                        	CSR_WE <= 1'b0;
+								CSR_WE <= 1'b0;
 								state <= IDLE;
-                                addr <= addr;
+								addr <= addr;
 							end
 						1'b1: begin
 								// reading data, so kick off read from CSR
 								CSR_A <= addr;
-                                CSR_DW <= 32'b0;
-	                        	CSR_WE <= 1'b0;
+								CSR_DW <= 32'b0;
+								CSR_WE <= 1'b0;
 								PREADY <= 1'b0;
-                                PRDATA <= 32'b0;
+								PRDATA <= 32'b0;
 								state <= READ1;
-                                addr <= addr;
+								addr <= addr;
 							end
-                    endcase
+					endcase
 				end else begin
-                    // just idle
-                    addr <= addr;
-    				state <= IDLE;
-    				PRDATA <= 32'b0;
-    				CSR_DW <= 32'b0;
-    				CSR_A <= 32'b0;
-    				PREADY <= 1'b1;
-    				CSR_WE <= 1'b0;
-                end
+					// just idle
+					addr <= addr;
+					state <= IDLE;
+					PRDATA <= 32'b0;
+					CSR_DW <= 32'b0;
+					CSR_A <= 32'b0;
+					PREADY <= 1'b1;
+					CSR_WE <= 1'b0;
+				end
 			READ1: begin
 					// we just wrote address to the CSR bus, so it will have data ready next cycle
-                    CSR_A <= addr;
-                    CSR_DW <= 32'b0;
-                	CSR_WE <= 1'b0;
+					CSR_A <= addr;
+					CSR_DW <= 32'b0;
+					CSR_WE <= 1'b0;
 					PREADY <= 1'b0;
-                    PRDATA <= 32'b0;
-                    addr <= addr;
+					PRDATA <= 32'b0;
+					addr <= addr;
 					state <= READ2;
 				end
 			READ2: begin
 					// yay, CSR has data ready for us now
 					PREADY <= 1'b1;
 					PRDATA <= CSR_DR;
-                    CSR_A <= 32'b0;
-                    CSR_DW <= 32'b0;
-                	CSR_WE <= 1'b0;
-                    addr <= addr;
+					CSR_A <= 32'b0;
+					CSR_DW <= 32'b0;
+					CSR_WE <= 1'b0;
+					addr <= addr;
 					state <= IDLE;
 				end
 			WRITE: begin
 					// we just wait one cycle to give the CSR write time to complete
 					CSR_WE <= 1'b0;
 					PREADY <= 1'b1;
-                    PRDATA <= 32'b0;
-                    CSR_A <= addr;
-                    CSR_DW <= 32'b0;
-                    addr <= addr;
+					PRDATA <= 32'b0;
+					CSR_A <= addr;
+					CSR_DW <= 32'b0;
+					addr <= addr;
 					state <= IDLE;
 				end
 			default: begin
-    				// reset
-    				addr <= 13'b0;
-    				state <= IDLE;
-    				PRDATA <= 32'b0;
-    				CSR_DW <= 32'b0;
-    				CSR_A <= 32'b0;
-    				PREADY <= 1'b1;
-    				CSR_WE <= 1'b0;
-                end
+					// reset
+					addr <= 13'b0;
+					state <= IDLE;
+					PRDATA <= 32'b0;
+					CSR_DW <= 32'b0;
+					CSR_A <= 32'b0;
+					PREADY <= 1'b1;
+					CSR_WE <= 1'b0;
+				end
 		endcase
 	end
 end

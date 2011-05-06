@@ -88,19 +88,19 @@ always @(posedge PCLK, negedge PRESERN) begin
 					state <= READ1;
 				end else begin
 					// just idle
-    				CSR_A <= 32'b0;
-    				CSR_DW <= 32'b0;
-    				CSR_WE <= 1'b0;
-    				PREADY <= 1'b1;
-    				PRDATA <= 32'b0;
-    				state <= IDLE;
+					CSR_A <= 32'b0;
+					CSR_DW <= 32'b0;
+					CSR_WE <= 1'b0;
+					PREADY <= 1'b1;
+					PRDATA <= 32'b0;
+					state <= IDLE;
 				end
 			READ1: begin
 					// we just wrote address to the CSR bus, so it will have data ready next cycle
 					CSR_A[31:14] <= 18'b0;
 					CSR_A[13:0] <= PADDR[13:0];
 					CSR_DW <= 32'b0;
-                	CSR_WE <= 1'b0;
+					CSR_WE <= 1'b0;
 					PREADY <= 1'b0;
 					PRDATA <= 32'b0;
 					state <= READ2;
@@ -125,7 +125,7 @@ always @(posedge PCLK, negedge PRESERN) begin
 					state <= IDLE;
 				end
 			default: begin
-    				// reset
+					// reset
 					CSR_A <= 32'b0;
 					CSR_DW <= 32'b0;
 					CSR_WE <= 1'b0;
