@@ -26,7 +26,7 @@ The CSR bus is part of the open-source Milkymist SoC.
 
 # Feedback
 
-Any feedback is welcomed, particularly bug reports or suggestions for improvement. You can message [me](https://github.com/cdzombak) on Github, email me, [open an issue](https://github.com/cdzombak/useful-hdl/issues), or fork this project and open a pull request.
+Any feedback is welcomed, particularly bug reports or suggestions for improvement. You can message [me](https://github.com/cdzombak) on Github, email me, [open an issue](https://github.com/cdzombak/misc-hardware/issues), or fork this project and open a pull request.
 
 # Author
 

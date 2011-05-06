@@ -3,7 +3,7 @@
 // Bridge between an ARM APB3 master and a CSR slave.
 // Uses an indirect addressing scheme.
 // For complete docs, source, and additional info, see:
-//   http://github.com/cdzombak/useful-hdl/apb3_csr_bridge-indirect
+//   http://github.com/cdzombak/misc-hardware/apb3_csr_bridge-indirect
 
 // Originally developed for a UMich EECS373 project:
 //   < link TK >
