@@ -27,4 +27,4 @@ Any feedback is welcomed, particularly bug reports or suggestions for improvemen
 
 This module was written by [Chris Dzombak](http://chris.dzombak.name).
 
-It was originally used in a UMich EECS373 project (link TK) to interface with the DMX cores from the Milkymist project.
+It was originally used in a [UMich EECS373 project](http://chris.dzombak.name/373project) to interface with the DMX cores from the Milkymist project.

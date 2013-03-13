@@ -30,4 +30,4 @@ Any feedback is welcomed, particularly bug reports or suggestions for improvemen
 
 # Author
 
-This driver was written by [Chris Dzombak](http://chris.dzombak.name). It was originally used in a UMich EECS373 project (link TK).
+This driver was written by [Chris Dzombak](http://chris.dzombak.name). It was originally used in a [UMich EECS373 project](http://chris.dzombak.name/373project).
